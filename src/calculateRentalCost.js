@@ -4,28 +4,24 @@
  * @return {number}
  */
 const COST_PER_DAY = 40;
-const DISCOUNT_1 = 20;
-const DISCOUNT_2 = 50;
-const NUM_1 = 1;
-const NUM_3 = 3;
-const NUM_7 = 7;
+const MINIMAL_DISCOUNT = 20;
+const MAXIMUM_DISCOUNT = 50;
+const ONE_DAY_RENT = 1;
+const THREE_DAY_RENT = 3;
+const SEVEN_DAY_RENT = 7;
 
 function calculateRentalCost(days) {
-  let result = 0;
-
-  if (days >= NUM_3 && days < NUM_7) {
-    result = days * COST_PER_DAY - DISCOUNT_1;
+  if (days >= SEVEN_DAY_RENT) {
+    return days * COST_PER_DAY - MAXIMUM_DISCOUNT;
   }
 
-  if (days >= NUM_7) {
-    result = days * COST_PER_DAY - DISCOUNT_2;
+  if (days >= THREE_DAY_RENT && days < SEVEN_DAY_RENT) {
+    return days * COST_PER_DAY - MINIMAL_DISCOUNT;
   }
 
-  if (days >= NUM_1 && days < NUM_3) {
-    result = days * COST_PER_DAY;
+  if (days >= ONE_DAY_RENT && days < THREE_DAY_RENT) {
+    return days * COST_PER_DAY;
   }
-
-  return result;
 }
 
 module.exports = calculateRentalCost;
